@@ -1,0 +1,8 @@
+../Core/Src/Parse.c:33:6:FOTA_vidInit	2
+../Core/Src/Parse.c:43:13:OTA_vidRunAppCode	1
+../Core/Src/Parse.c:49:6:FOTA_vidRun	6
+../Core/Src/Parse.c:82:16:getHex	5
+../Core/Src/Parse.c:101:13:OTA_vidParseRecord	9
+../Core/Src/Parse.c:176:13:OTA_vidSetHighAddress	1
+../Core/Src/Parse.c:185:6:USART1_IRQHandler	2
+../Core/Src/Parse.c:198:13:OTA_vidCharReceived	4

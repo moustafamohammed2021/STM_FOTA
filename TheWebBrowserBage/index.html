@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>OTA Programmer</title>
+<meta charset="UTF-8">
+<meta name="gc:base" content="https://lab.lepture.com/github-cards/">
+<meta name="gc:theme" content="medium">
+<meta name="gc:client-id" content="client id string">
+<meta name="gc:client-secret" content="client secret string">
+
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="icon.png">
+<style>
+    body {
+        font-family: "Lato", sans-serif
+    }
+
+    .mySlides {
+        display: none
+    }
+</style>
+<body>
+
+    <!-- Navbar -->
+    <div class="w3-top">
+        <div class="w3-bar w3-black w3-card">
+            <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right"
+                href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i
+                    class="fa fa-bars"></i></a>
+            <a href="#home" class="w3-bar-item w3-button w3-padding-large">HOME</a>
+            <a href="#usage" class="w3-bar-item w3-button w3-padding-large">USAGE</a>
+            <a href="#testing" class="w3-bar-item w3-button w3-padding-large w3-hide-small">TESTING</a>
+            <a href="#uploading" class="w3-bar-item w3-button w3-padding-large w3-hide-small">UPLOADING</a>
+            <a href="#code" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CODE</a>
+        </div>
+    </div>
+<!-- Page content -->
+    <div class="w3-content" style="max-width:2000px;margin-top:46px">
+
+        <!-- The Home Section -->
+        <div class="w3-container w3-content w3-center w3-padding-50" style="max-width:800px" id="home">
+            <div style="height:50px; width:100%; clear:both;"></div>
+            <p class="w3-opacity"><i>For STM32 Microcontroller</i></p>
+            <p class="w3-justify">This project is implemented to program BlueBill Board (STM32 Micro-controller) over
+                the air using a website connected to a cloud database (Firebase) and NodeMCU board to get the code from
+                internet for sending it to STM to write it to the Flash Memory using the Bootloader flashed on the first
+                8 kB of Flash Memory.
+            </p>
+
+        </div>
+	 <h2 class="divider donotcross" contenteditable></h2>
+
+        <!-- The Usage Section -->
+        <div class="w3-container w3-content w3-center w3-padding-50" style="max-width:600px" id="usage">
+            <div style="height:50px; width:100%; clear:both;"></div>
+            <h2 class="w3-wide">USAGE</h2>
+            <p class="w3-opacity"><i>Usage discreption.</i></p>
+        </div>
+        <ul style="padding-left: 100px; padding-right: 100px;">
+            <li>The testing section sends to the NodeMCU and waits 5 seconds to respond to know if it is connected to
+                Internet or not.</li>
+            <br>
+            <li>The Linker script file <code style="background-color: lightgray; padding: 4px;">mem.id</code> should be
+                edited to change the flash size to 56KB as Boot Loader uses 8 KB and start address should be edited:
+                <br><br>
+                <code
+                    style="background-color: lightgray; padding: 4px;">FLASH (rx) : ORIGIN = 0x08002000, LENGTH = 56K</code>
+            </li>
+            <br>
+            <li>Uploading the code doesn't mean it's flashed, once the NodeMCU is connected to Internet and connected to
+                STM it will send the uploaded code to STM to flash</li>
+            <br>
+            <li>The full code is on GitHub Organization (The link below)</li>
+        </ul>
+	<h2 class="divider donotcross" contenteditable></h2>
+
+        <!-- The Testing Section -->
+        <div id="testing">
+            <div class="w3-container w3-content w3-padding-32" style="max-width:800px">
+                <h2 class="w3-wide w3-center">TESTING</h2>
+                <p class="w3-opacity w3-center"><i>Test the communication between the website and NodeMCU</i></p><br>
+                <ul class="w3-ul w3-border w3-white w3-text-grey">
+                    <table style="width:98%; margin: 5px">
+                        <tr>
+                            <td>NodeMCU Status</td>
+                            <td><span class="w3-tag w3-red w3-margin-left" id="web_node">NOT CONNECTED</span></td>
+                            <td><button class="w3-button w3-black w3-section w3-right buttonload"
+                                    onclick="testConnection()"><i class="fa-spin" style="margin-right: 10px;"
+                                        id="conn_button"></i>Refresh</button></td>
+                        </tr>
+                    </table>
+                </ul>
+            </div>
+        </div>
+	<h2 class="divider donotcross" contenteditable></h2>
+
+        <!-- The Uploading Section -->
+        <div id="uploading">
+            <div class="w3-container w3-content w3-padding-32" style="max-width:800px">
+
+                <h2 class="w3-wide w3-center">UPLOADING</h2>
+                <p class="w3-opacity w3-center"><i>Upload the file to NodeMCU</i></p><br>
+                <div class="dropdown">
+                    <button class="dropbtn">Choose Example</button>
+                    <div class="dropdown-content">
+                        <a href="javascript:example1();">Blink built-in LED every 100 ms</a>
+                        <a href="javascript:example2();">Blink built-in LED every 500 ms</a>
+                        <a href="javascript:example3();">Blink built-in LED every 100,100,500 ms</a>
+                    </div>
+                </div>
+
+                <br><br>
+		<h5 id="example_name" style="font-family: 'Courier New', monospace; margin-left:16px; "></h5>
+
+                <ul class="w3-ul w3-border w3-white w3-text-grey" style="height: 250px; ">
+                    <div>
+                        <input type="file" id="myfile" name="myfile" accept=".hex" style="margin:16px; ">
+                    </div>
+                    <div>
+                        <textarea rows="5" cols="50" id="output" readonly
+                            style="font-family: 'Courier New', monospace; margin-left:16px; resize: none"> Please select a .hex file</textarea>
+                    </div>
+                    <button class="w3-button w3-black w3-section w3-right" onclick="upload()"
+                        style="margin-right:16px"><i class="fa-spin" style="margin-right: 10px;"
+                            id="upload_button"></i>Start Uploading</button>
+            </div>
+
+            </ul>
+        </div>
+    </div>
+	<script src="script.js"></script>
+    <script src="github_card.js"></script>			
+</body>
+</html>
